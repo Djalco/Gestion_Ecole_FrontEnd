@@ -51,7 +51,12 @@ export class AddClassComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    const newClass = this.classForm.value;
+    const v = this.classForm.value;
+
+    const newClass = {
+      name: v.name
+    };  
+
     this.classService.createClass(newClass).subscribe({
       next: (response) => {
         console.log('Class created successfully:', response);
