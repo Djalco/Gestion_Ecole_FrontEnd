@@ -9,7 +9,7 @@ import { DisplaySubjectComponent } from "./pages/crud/Subject/display-subject-co
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, AddClassComponent, DisplayClassComponent, AddSubjectComponent, DisplaySubjectComponent],
+  imports: [RouterOutlet, CommonModule, AddClassComponent, DisplayClassComponent, DisplaySubjectComponent, AddSubjectComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

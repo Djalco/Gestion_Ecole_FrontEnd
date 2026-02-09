@@ -19,7 +19,7 @@ export class SubjectService {
     }
 
     // Method to add a new subject
-    createSubject(subject: any) : Observable<SubjectDTO> {
+    createSubject(subject: SubjectDTO) : Observable<SubjectDTO> {
         return this.http.post<SubjectDTO>(this.apiUrl, subject);
     }
 

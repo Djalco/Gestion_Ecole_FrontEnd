@@ -1,26 +1,30 @@
-<p>Add a new class</p>
-<div>
+<div class="container">
+    <p>Ajouter une nouvelle classe</p>
+
     <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
-        <label for="name">Class Name:</label>
-        <input type="text" id="name" formControlName="name" required>
-
-        <button type="submit" [disabled]="!classForm.valid">Add Class</button>
+        <div class="form-group">
+            <label for="name">Nom de la classe :</label>
+            <input type="text" id="name" formControlName="name" placeholder="Ex: 3IL 1...">
+        </div>
+        <button type="submit" [disabled]="!classForm.valid || isLoading">
+            {{ isLoading ? 'Ajout...' : 'Ajouter' }}
+        </button>
     </form>
-</div>
 
-<!-- <div>
+    <div *ngIf="isLoading && classes.length === 0" class="loading">Chargement des données...</div>
+
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Nom de la classe</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let class of classes">
-                <td>{{ class.id }}</td>
+                <td><strong>#{{ class.id }}</strong></td>
                 <td>{{ class.name }}</td>
             </tr>
         </tbody>
     </table>
-</div> -->
+</div>

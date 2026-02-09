@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SubjectDTO } from '../../../../models/subject.model';
 
 @Component({
-  selector: 'app-add-Subject-component',
+  selector: 'app-add-subject-component',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-subject-component.html',
@@ -17,7 +17,7 @@ export class AddSubjectComponent implements OnInit {
   private subjectService = inject(SubjectService);
   private router = inject(Router);
 
-  subject: SubjectDTO[] = [];
+  subjects: SubjectDTO[] = [];
   subjectForm!: FormGroup;
   private fb = inject(FormBuilder);
   isLoading: boolean = false;
@@ -25,11 +25,21 @@ export class AddSubjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    //this.loadSubjectes();
+    this.loadSubjects();
 
   }
 
- 
+  loadSubjects() {
+    this.subjectService.getSubjects().subscribe({
+      next: (data) => { 
+        this.subjects = data;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching subjects:', error);  
+      }
+    }); 
+  }
   initializeForm() {
     this.subjectForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
