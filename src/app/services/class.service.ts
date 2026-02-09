@@ -8,7 +8,7 @@ import { ClassDTO } from "../models/class.model";
 export class ClassService {
 
     private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:8080/api/classes';
+    private apiUrl = 'http://localhost:8080/api/v1/classes';
 
     // Method to get all classes
     getClasses() :Observable<ClassDTO[]> {
