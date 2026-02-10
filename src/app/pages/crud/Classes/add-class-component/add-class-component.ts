@@ -17,6 +17,8 @@ export class AddClassComponent implements OnInit {
   private classService = inject(ClassService);
   private router = inject(Router);
 
+
+
   classes: ClassDTO[] = [];
   classForm!: FormGroup;
   private fb = inject(FormBuilder);
@@ -57,10 +59,13 @@ export class AddClassComponent implements OnInit {
       name: v.name
     };  
 
-    this.classService.createClass(newClass).subscribe({
-      next: (response) => {
-        console.log('Class created successfully:', response);
-        this.router.navigate(['/classes']);
+    this.classService.createClass(newClass)
+    .subscribe({
+      next: () => {
+        this.isLoading = false;
+        
+        setTimeout(() => this.router.navigate(['/classes']), 2000);
+        console.log("Payload envoyé :", newClass);
       },
       error: (error) => {
         console.error('Error creating class:', error);

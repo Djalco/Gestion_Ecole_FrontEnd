@@ -7,7 +7,7 @@ import { StudentDTO } from "../models/student.model";
 @Injectable({ providedIn: 'root' })
 export class StudentService {
   
-    private apiUrl = 'http://localhost:8080/api/students'; // Adjust the URL as needed
+    private apiUrl = 'http://localhost:8080/api/v1/students'; // Adjust the URL as needed
     private http = inject(HttpClient);
 
     // Method to get all students

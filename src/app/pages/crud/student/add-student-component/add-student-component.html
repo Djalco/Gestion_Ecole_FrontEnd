@@ -1,0 +1,85 @@
+<div class="container">
+    <p>Ajouter un nouvel étudiant</p>
+
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+
+            <div class="field-container">
+                <label for="lastName">Nom</label>
+                <input type="text" id="lastName" formControlName="lastName" placeholder="Ex: Doe"
+                    [class.input-error]="studentForm.get('lastName')?.invalid && studentForm.get('lastName')?.touched">
+                <div *ngIf="studentForm.get('lastName')?.invalid && studentForm.get('lastName')?.touched"
+                    class="error-text">
+                    <small>Le nom est requis (min. 2 caractères).</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="firstName">Prénom</label>
+                <input type="text" id="firstName" formControlName="firstName" placeholder="Ex: John"
+                    [class.input-error]="studentForm.get('firstName')?.invalid && studentForm.get('firstName')?.touched">
+                <div *ngIf="studentForm.get('firstName')?.invalid && studentForm.get('firstName')?.touched"
+                    class="error-text">
+                    <small>Le prénom est requis.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" placeholder="john.doe@example.com"
+                    [class.input-error]="studentForm.get('email')?.invalid && studentForm.get('email')?.touched">
+                <div *ngIf="studentForm.get('email')?.invalid && studentForm.get('email')?.touched" class="error-text">
+                    <small>Email invalide.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="phoneNumber">Téléphone</label>
+                <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="+33 6..."
+                    [class.input-error]="studentForm.get('phoneNumber')?.invalid && studentForm.get('phoneNumber')?.touched">
+                <div *ngIf="studentForm.get('phoneNumber')?.invalid && studentForm.get('phoneNumber')?.touched"
+                    class="error-text">
+                    <small>Numéro requis.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" formControlName="password" placeholder="••••••••"
+                    [class.input-error]="studentForm.get('password')?.invalid && studentForm.get('password')?.touched">
+                <div *ngIf="studentForm.get('password')?.invalid && studentForm.get('password')?.touched"
+                    class="error-text">
+                    <small>Minimum 6 caractères.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="birthDate">Date de naissance</label>
+                <input type="date" id="birthDate" formControlName="birthDate"
+                    [class.input-error]="studentForm.get('birthDate')?.invalid && studentForm.get('birthDate')?.touched">
+                <div *ngIf="studentForm.get('birthDate')?.invalid && studentForm.get('birthDate')?.touched"
+                    class="error-text">
+                    <small>Date requise.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="classId">Classe</label>
+                <select id="classId" formControlName="classId"
+                    [class.input-error]="studentForm.get('classId')?.invalid && studentForm.get('classId')?.touched">
+                    <option value="">Sélectionnez une classe</option>
+                    <option *ngFor="let class of classes" [value]="class.id">{{ class.name }}</option>
+                </select>
+                <div *ngIf="studentForm.get('classId')?.invalid && studentForm.get('classId')?.touched"
+                    class="error-text">
+                    <small>Veuillez choisir une classe.</small>
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" [disabled]="!studentForm.valid || isLoading">
+            {{ isLoading ? 'Traitement en cours...' : 'Inscrire l\'étudiant' }}
+        </button>
+    </form>
+</div>
