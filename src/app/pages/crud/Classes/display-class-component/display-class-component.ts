@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class DisplayClassComponent implements OnInit {
 
-
   private classService = inject(ClassService);
   classes: ClassDTO[] = [];
   isLoading: boolean = true;
