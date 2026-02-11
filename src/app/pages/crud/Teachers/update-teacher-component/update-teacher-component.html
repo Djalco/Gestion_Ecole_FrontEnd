@@ -1,1 +1,78 @@
-<p>update-teacher-component works!</p>
+<div>
+    <p>Modifier le Prof</p>
+</div>
+<div class="container">
+    <span>Mettez a jour les informations du Prof</span>
+
+    <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+
+            <div class="field-container">
+                <label for="lastName">Nom</label>
+                <input type="text" id="lastName" formControlName="lastName" placeholder="Ex: Doe"
+                    [class.input-error]="teacherForm.get('lastName')?.invalid && teacherForm.get('lastName')?.touched">
+                <div *ngIf="teacherForm.get('lastName')?.invalid && teacherForm.get('lastName')?.touched"
+                    class="error-text">
+                    <small>Le nom est requis (min. 2 caractères).</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="firstName">Prénom</label>
+                <input type="text" id="firstName" formControlName="firstName" placeholder="Ex: John"
+                    [class.input-error]="teacherForm.get('firstName')?.invalid && teacherForm.get('firstName')?.touched">
+                <div *ngIf="teacherForm.get('firstName')?.invalid && teacherForm.get('firstName')?.touched"
+                    class="error-text">
+                    <small>Le prénom est requis.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" placeholder="john.doe@example.com"
+                    [class.input-error]="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched">
+                <div *ngIf="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched" class="error-text">
+                    <small>Email invalide.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="phoneNumber">Téléphone</label>
+                <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="+33 6..."
+                    [class.input-error]="teacherForm.get('phoneNumber')?.invalid && teacherForm.get('phoneNumber')?.touched">
+                <div *ngIf="teacherForm.get('phoneNumber')?.invalid && teacherForm.get('phoneNumber')?.touched"
+                    class="error-text">
+                    <small>Numéro requis.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" formControlName="password" placeholder="••••••••"
+                    [class.input-error]="teacherForm.get('password')?.invalid && teacherForm.get('password')?.touched">
+                <div *ngIf="teacherForm.get('password')?.invalid && teacherForm.get('password')?.touched"
+                    class="error-text">
+                    <small>Minimum 8 caractères.</small>
+                </div>
+            </div>
+
+            <div class="field-container">
+                <label for="subjectId">Classe</label>
+                <select id="subjectId" formControlName="subjectId"
+                    [class.input-error]="teacherForm.get('subjectId')?.invalid && teacherForm.get('subjectId')?.touched">
+                    <option value="">Sélectionnez une matiere</option>
+                    <option *ngFor="let class of subjects" [value]="class.id">{{ class.name }}</option>
+                </select>
+                <div *ngIf="teacherForm.get('subjectId')?.invalid && teacherForm.get('subjectId')?.touched"
+                    class="error-text">
+                    <small>Veuillez choisir une classe.</small>
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" [disabled]="!teacherForm.valid || isLoading">
+            {{ isLoading ? 'Traitement en cours...' : 'Modifier le Prof' }}
+        </button>
+    </form>
+</div>

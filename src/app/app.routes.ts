@@ -25,7 +25,7 @@ export const routes: Routes = [
 
     {path: 'teachers', component : DisplayTeacherComponent},
     {path: 'add-teacher', component : AddTeacherComponent},
-    {path: 'update-teacher/:id', component: UpdateTeacherComponent}
+    {path: 'update-teacher/:id', component: UpdateTeacherComponent }
 
 
 ];
