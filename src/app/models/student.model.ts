@@ -8,5 +8,4 @@ export interface StudentDTO  {
     birthDate: string;
     classId?: number;
     classeName?: string;
-
 }
