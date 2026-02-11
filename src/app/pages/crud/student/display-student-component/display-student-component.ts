@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { StudentService } from '../../../../services/student.service';
 import { StudentDTO } from '../../../../models/student.model';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { ClassDTO } from '../../../../models/class.model';
+import { SubjectDTO } from '../../../../models/subject.model';
 
 @Component({
   selector: 'app-display-student-component',
@@ -16,6 +17,7 @@ export class DisplayStudentComponent implements OnInit {
 
 
   private studentService = inject(StudentService);
+  private router = inject(Router);
   
 
   students: StudentDTO[] = [];
@@ -53,27 +55,34 @@ export class DisplayStudentComponent implements OnInit {
     });
   }
 
-  editStudent(student: StudentDTO) {
-    this.selectedStudent = student;
-    if (this.selectedStudent?.id) {
-      // Navigate to the edit page for the selected student 
+  selectStudent:  StudentDTO |null = null;
+
+  editStudent(id: number|undefined) {
+    if (id) {
+      this.router.navigate(["/update-student",id])
     }
   }
-  deleteStudent(student: StudentDTO) {
-    this.selectedStudent = student;
-    if (confirm(`Are you sure you want to delete ${student.firstName} ${student.lastName}?`)) {
-      if (this.selectedStudent?.id) {
-        this.studentService.deleteStudent(this.selectedStudent.id).subscribe({
+  editStudentSelect(){
+    if(this.selectStudent?.id){
+      this.editStudent(this.selectStudent.id)
+    }
+  }
+  deleteStudent(id: number | undefined) {
+
+    if (confirm('Are you sure you want to delete this student?')) {
+
+      if (id) {
+        this.studentService.deleteStudent(id).subscribe({
           next: () => {
-            this.loadStudents();
-            alert('Student deleted successfully');
+            console.log('Subject deleted successfully');
+            this.loadStudents(); // Refresh the list after deletion
           },
           error: (error) => {
-            console.error('Error deleting student:', error);
+            console.error('Error deleting subject:', error);
           }
         });
       }
+
     }
   }
- 
 }

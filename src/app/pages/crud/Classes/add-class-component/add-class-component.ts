@@ -14,6 +14,7 @@ import { ClassDTO } from '../../../../models/class.model';
 })
 export class AddClassComponent implements OnInit {
 
+
   private classService = inject(ClassService);
   private router = inject(Router);
 
@@ -75,4 +76,35 @@ export class AddClassComponent implements OnInit {
     });
   }
   
+  selectedClasse: ClassDTO | null = null;
+  
+    editClasse(id: number | undefined) {
+      if (id) {
+        this.router.navigate(['/update-subjects', id]);
+      }
+    }
+    deleteClasse(id: number | undefined) {
+  
+      if(confirm('Are you sure you want to delete this subject?')) {
+  
+        if (id) {
+          this.classService.deleteClass(id).subscribe({
+            next: () => {
+              console.log('Subject deleted successfully');
+              this.loadClasses(); // Refresh the list after deletion
+            },
+            error: (error) => {
+              console.error('Error deleting subject:', error);
+            }
+          });
+        }
+     
+      }
+    }
+  
+    editSelectedClass() {
+      if (this.selectedClasse?.id) {
+        this.editClasse(this.selectedClasse.id);    
+      }
+    }
 }

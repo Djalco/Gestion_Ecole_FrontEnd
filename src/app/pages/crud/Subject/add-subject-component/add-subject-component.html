@@ -22,8 +22,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Subject Name</th>
+                <th>Nom de la matière</th>
                 <th>Coefficient</th>
+                <th>Actions</th>
                 
             </tr>
         </thead>
@@ -32,6 +33,10 @@
                 <td><strong>#{{ class.id }}</strong></td>
                 <td>{{ class.name }}</td>
                 <td>{{ class.coefficient }}</td>
+                <td>
+                    <button (click)="editSubject(class.id)">Modifier</button>
+                    <button (click)="deleteSubject(class.id)">Supprimer</button>
+                </td>
             </tr>
         </tbody>
     </table>

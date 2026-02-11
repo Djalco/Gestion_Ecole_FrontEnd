@@ -26,8 +26,8 @@
                 <td>{{ student.firstName }}</td>
                 <td>{{ student.classeName }}</td>
                 <td>
-                    <button (click)="editStudent(student)">Modifier</button>
-                    <button (click)="deleteStudent(student)">Supprimer</button>
+                    <button (click)="editStudent(student.id)">Modifier</button>
+                    <button (click)="deleteStudent(student.id)">Supprimer</button>
                 </td>
             </tr>
         </tbody>

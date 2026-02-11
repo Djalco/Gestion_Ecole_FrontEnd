@@ -18,12 +18,17 @@
             <tr>
                 <th>ID</th>
                 <th>Nom de la classe</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let class of classes">
                 <td><strong>#{{ class.id }}</strong></td>
                 <td>{{ class.name }}</td>
+                <td>
+                    <button (click)="editClasse(class.id)">Modifier</button>
+                    <button (click)="deleteClasse(class.id)">Supprimer</button>
+                </td>
             </tr>
         </tbody>
     </table>

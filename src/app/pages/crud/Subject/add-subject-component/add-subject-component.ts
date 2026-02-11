@@ -14,6 +14,7 @@ import { SubjectDTO } from '../../../../models/subject.model';
 })
 export class AddSubjectComponent implements OnInit {
 
+
   private subjectService = inject(SubjectService);
   private router = inject(Router);
 
@@ -73,4 +74,36 @@ export class AddSubjectComponent implements OnInit {
     });
   }
 
+  selectedSubject: SubjectDTO | null = null;
+
+  editSubject(id: number | undefined) {
+    if (id) {
+      this.router.navigate(['/update-subjects', id]);
+    }
+  }
+  deleteSubject(id: number | undefined) {
+
+    if(confirm('Are you sure you want to delete this subject?')) {
+
+      if (id) {
+        this.subjectService.deleteSubject(id).subscribe({
+          next: () => {
+            console.log('Subject deleted successfully');
+            this.loadSubjects(); // Refresh the list after deletion
+          },
+          error: (error) => {
+            console.error('Error deleting subject:', error);
+          }
+        });
+      }
+   
+    }
+  }
+
+  editSelectedSubject() {
+    if (this.selectedSubject?.id) {
+      this.editSubject(this.selectedSubject.id);    
+    }
+  }
+  
 }
