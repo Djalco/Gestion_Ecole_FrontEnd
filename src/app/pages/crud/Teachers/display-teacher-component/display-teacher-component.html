@@ -1,0 +1,35 @@
+<div>
+    <p>Liste des Professeurs</p>
+
+    <button label="Ajouter un etudiant" routerLink="/add-teacher" class="add-button">
+        Ajouter un prof
+    </button>
+</div>
+
+<div class="container">
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom </th>
+                <th>Prénom</th>
+                <th>Matiere</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let teacher of teachers">
+                <td><strong>#{{ teacher.id }}</strong></td>
+                <td>{{ teacher.lastName }}</td>
+                <td>{{ teacher.firstName }}</td>
+                <td>{{ teacher.subjectName }}</td>
+                <td>
+                    <button (click)="editTeacher(teacher.id)">Modifier</button>
+                    <button (click)="deleteTeacher(teacher.id)">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

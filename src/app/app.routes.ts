@@ -6,6 +6,9 @@ import { AddStudentComponent } from './pages/crud/student/add-student-component/
 import { UpdateSubjectComponent } from './pages/crud/Subject/update-subject-component/update-subject-component';
 import { UpdateClassComponent } from './pages/crud/Classes/update-class-component/update-class-component';
 import { UpdateStudentComponent } from './pages/crud/student/update-student-component/update-student-component';
+import { DisplayTeacherComponent } from './pages/crud/Teachers/display-teacher-component/display-teacher-component';
+import { AddTeacherComponent } from './pages/crud/Teachers/add-teacher-component/add-teacher-component';
+import { UpdateTeacherComponent } from './pages/crud/Teachers/update-teacher-component/update-teacher-component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/classes', pathMatch: 'full' },
@@ -16,9 +19,13 @@ export const routes: Routes = [
     { path: 'subjects', component: AddSubjectComponent },
     { path: 'update-subjects/:id', component: UpdateSubjectComponent },
 
-    { path: 'add-students', component: AddStudentComponent },
     { path: 'students', component: DisplayStudentComponent },
-    { path: 'update-student/:id', component: UpdateStudentComponent }
+    { path: 'add-students', component: AddStudentComponent },
+    { path: 'update-student/:id', component: UpdateStudentComponent },
+
+    {path: 'teachers', component : DisplayTeacherComponent},
+    {path: 'add-teacher', component : AddTeacherComponent},
+    {path: 'update-teacher/:id', component: UpdateTeacherComponent}
 
 
 ];

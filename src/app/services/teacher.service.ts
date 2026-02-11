@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 
 @Injectable({ providedIn: 'root' })
 export class TeacherService {
-    private apiUrl = 'http://localhost:8080/api/teachers'; // Adjust the URL as needed
+    private apiUrl = 'http://localhost:8080/api/v1/teachers'; 
     private http = inject(HttpClient);
 
     // Method to get all teachers

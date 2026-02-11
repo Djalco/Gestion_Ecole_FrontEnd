@@ -6,4 +6,5 @@ export interface TeacherDTO {
     phoneNumber?: string;
     password: string;
     subjectId?: number; // Assuming a teacher can be associated with a subject
+    subjectName?:String;
 }

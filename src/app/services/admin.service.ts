@@ -5,7 +5,7 @@ import { AdminDTO } from "../models/admin.model";
 
 export class AdminService {
 
-    private apiUrl = 'http://localhost:8080/api/admins'; // Adjust the URL as needed
+    private apiUrl = 'http://localhost:8080/api/v1/admins'; // Adjust the URL as needed
     private http = inject(HttpClient);
 
     // Method to get all admins
