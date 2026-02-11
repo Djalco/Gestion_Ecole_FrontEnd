@@ -190,6 +190,10 @@ button {
     transition: transform 0.1s active, background 0.2s;
 }
 
+.action-button {
+    display: flex;
+    gap: 10px;
+}
 button:hover:not(:disabled) {
     background: #4f46e5;
 }
